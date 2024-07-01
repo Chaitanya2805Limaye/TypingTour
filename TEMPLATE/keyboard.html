@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" >
+  <head>
+    <meta  http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Typing Tour</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- bootstrap scripts -->
+  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <!-- Nav Bar -->
+    <div class="Navbar">
+  <nav class="Navbar__Items">
+    <div class="Navbar__Link Navbar__Link-brand">
+     Typing Tour
+    </div>
+    <div class="Navbar__Link">
+      <a href="{% url 'leaderboard' %}" class="nav-link">Leaderboard</a>
+    </div>
+    <div class="Navbar__Link">
+      <a href="{% url 'contactUs' %}" class="nav-link">Contact Us</a>
+    </div>
+    <div class="Navbar__Link">
+      <a href="{% url 'about us' %}" class="nav-link">About</a>
+    </div>
+  </nav>
+</div>
+  <div class="">
+    <button type="button" name="button"><a href="{% url 'base' %}">Go to Homepage</a></button>
+  </div>
+
+
+
+
+
+    <div class="container">
+      <div class="stats">
+        <p>Time: <span id="timer">0s</span></p>
+        <p>Mistakes: <span id="mistakes">0</span></p>
+      </div>
+      <div
+        id="quote"
+        onmousedown="return false"
+        onselectstart="return false"
+      ></div>
+      <textarea
+        rows="3"
+        id="quote-input"
+        placeholder="Type here when the test starts.."
+      ></textarea>
+      <button id="start-test" onclick="startTest()">Start Test</button>
+      <button id="stop-test" onclick="displayResult()">Stop Test</button>
+      <div class="result">
+        <h3>Result</h3>
+        <div class="wrapper">
+          <p>Accuracy: <span id="accuracy"></span></p>
+          <p>Speed: <span id="wpm"></span></p>
+        </div>
+      </div>
+    </div>
+    <!-- Script -->
+    <script src="script.js"></script>
+
+
+  </body>
+</html>
+
+<!-- inline css -->
+
+<style media="screen">
+.btn {
+  background: #4C3F91;
+  background-image: -webkit-linear-gradient(top, #4C3F91, #4C3F91);
+  background-image: -moz-linear-gradient(top, #4C3F91, #4C3F91);
+  background-image: -ms-linear-gradient(top, #4C3F91, #4C3F91);
+  background-image: -o-linear-gradient(top, #4C3F91, #4C3F91);
+  background-image: linear-gradient(to bottom, #4C3F91, #4C3F91);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #f2f2f2;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #F999B7;
+  background-image: -webkit-linear-gradient(top, #F999B7, #FF5677);
+  background-image: -moz-linear-gradient(top, #F999B7, #FF5677);
+  background-image: -ms-linear-gradient(top, #F999B7, #FF5677);
+  background-image: -o-linear-gradient(top, #F999B7, #FF5677);
+  background-image: linear-gradient(to bottom, #F999B7, #FF5677);
+  text-decoration: none;
+}
+  .Navbar {
+  background-color: #041C32;
+  display: flex;
+  padding: 20px;
+  font-family: sans-serif;
+  color: white;
+}
+.Navbar__Items {
+  display:flex;
+}
+.Navbar__Link {
+  padding-right: 8px;
+  size: 100px;
+  color: white;
+}
+
+  * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #EDD2F3;
+}
+.container {
+  width: 80vmin;
+  padding: 50px 30px;
+  background-color: #ffffff;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+.stats {
+  text-align: right;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+.stats span {
+  font-weight: 600;
+}
+#quote {
+  text-align: justify;
+  margin: 50px 0 30px 0;
+}
+textarea {
+  resize: none;
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px 5px;
+  font-size: 16px;
+}
+button {
+  float: right;
+  margin-top: 20px;
+  background-color: #cecb15;
+  color: #ffffff;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+.result {
+  margin-top: 40px;
+  display: none;
+}
+.result h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.wrapper span {
+  font-weight: 600;
+}
+.success {
+  color: #44b267;
+}
+.fail {
+  color: #e81c4e;
+}
+
+a:link {
+  color: orange;
+  background-color: transparent;
+  text-decoration: none;
+  padding: 10px;
+}
+a:visited {
+  color: grey;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+</style>
+
+<!-- inline scripts -->
+<script type="text/javascript">
+  //Random Quotes Api URL
+const quoteApiUrl = "https://api.quotable.io/random?minLength=80&maxLength=100";
+const quoteSection = document.getElementById("quote");
+const userInput = document.getElementById("quote-input");
+let quote = "";
+let time = 60;
+let timer = "";
+let mistakes = 0;
+
+//Display random quotes
+const renderNewQuote = async () => {
+  //Fetch contents from url
+  const response = await fetch(quoteApiUrl);
+
+  //Store response
+  let data = await response.json();
+
+  //Access quote
+  quote = data.content;
+
+  //Array of characters in the quote
+  let arr = quote.split("").map((value) => {
+    //wrap the characters in a span tag
+    return "<span class='quote-chars'>" + value + "</span>";
+  });
+  //join array for displaying
+  quoteSection.innerHTML += arr.join("");
+};
+
+//Logic for comparing input words with quote
+userInput.addEventListener("input", () => {
+  let quoteChars = document.querySelectorAll(".quote-chars");
+  //Create an arrat from received span tags
+  quoteChars = Array.from(quoteChars);
+
+  //array of user input characters
+  let userInputChars = userInput.value.split("");
+
+  //loop through each character in quote
+  quoteChars.forEach((char, index) => {
+    //Check if char(quote character) = userInputChars[index](input character)
+    if (char.innerText == userInputChars[index]) {
+      char.classList.add("success");
+    }
+    //If user hasn't entered anything or backspaced
+    else if (userInputChars[index] == null) {
+      //Remove class if any
+      if (char.classList.contains("success")) {
+        char.classList.remove("success");
+      } else {
+        char.classList.remove("fail");
+      }
+    }
+    //If user enter wrong character
+    else {
+      //Checks if we alreasy have added fail class
+      if (!char.classList.contains("fail")) {
+        //increment and display mistakes
+        mistakes += 1;
+        char.classList.add("fail");
+      }
+      document.getElementById("mistakes").innerText = mistakes;
+    }
+    //Returns true if all the characters are entered correctly
+    let check = quoteChars.every((element) => {
+      return element.classList.contains("success");
+    });
+    //End test if all characters are correct
+    if (check) {
+      displayResult();
+    }
+  });
+});
+
+//Update Timer on screen
+function updateTimer() {
+  if (time == 0) {
+    //End test if timer reaches 0
+    displayResult();
+  } else {
+    document.getElementById("timer").innerText = --time + "s";
+  }
+}
+
+//Sets timer
+const timeReduce = () => {
+  time = 60;
+  timer = setInterval(updateTimer, 1000);
+};
+
+//End Test
+const displayResult = () => {
+  //display result div
+  document.querySelector(".result").style.display = "block";
+  clearInterval(timer);
+  document.getElementById("stop-test").style.display = "none";
+  userInput.disabled = true;
+  let timeTaken = 1;
+  if (time != 0) {
+    timeTaken = (60 - time) / 100;
+  }
+  document.getElementById("wpm").innerText =
+    (userInput.value.length / 5 / timeTaken).toFixed(2) + " wpm";
+  document.getElementById("accuracy").innerText =
+    Math.round(
+      ((userInput.value.length - mistakes) / userInput.value.length) * 100
+    ) + " %";
+};
+
+//Start Test
+const startTest = () => {
+  mistakes = 0;
+  timer = "";
+  userInput.disabled = false;
+  timeReduce();
+  document.getElementById("start-test").style.display = "none";
+  document.getElementById("stop-test").style.display = "block";
+};
+
+window.onload = () => {
+  userInput.value = "";
+  document.getElementById("start-test").style.display = "block";
+  document.getElementById("stop-test").style.display = "none";
+  userInput.disabled = true;
+  renderNewQuote();
+};
+
+</script>
